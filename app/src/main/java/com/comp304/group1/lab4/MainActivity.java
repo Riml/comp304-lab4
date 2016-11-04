@@ -2,12 +2,13 @@ package com.comp304.group1.lab4;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
-    //
+
+
     private static final String tables[]={"tbl_patient","tbl_test","tbl_nurse","tbl_doctor"};
-    //
     private static final String tableCreatorString[] ={
             "CREATE TABLE tbl_patient (patient_id INTEGER PRIMARY KEY AUTOINCREMENT ," +
                     " firstname TEXT, lastname TEXT,department TEXT, room TEXT,doctor_id INTEGER NOT NULL" +
@@ -27,5 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSupportActionBar().setTitle("Hospital Database (Group1)");
     }
 }

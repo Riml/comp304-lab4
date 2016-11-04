@@ -11,7 +11,43 @@
     tools:context="com.comp304.group1.lab4.MainActivity">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txtChooseDB"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="Patients"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_marginTop="43dp"
+        android:id="@+id/btnPatientsDb"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Doctors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnDoctorsDb"
+        android:layout_above="@+id/btnTestsDb"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Nurses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnNursesDb"
+        android:layout_alignBaseline="@+id/btnTestsDb"
+        android:layout_alignBottom="@+id/btnTestsDb"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Tests"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnTestsDb"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/btnPatientsDb"
+        android:layout_alignEnd="@+id/btnPatientsDb" />
 </RelativeLayout>
