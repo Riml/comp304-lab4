@@ -16,6 +16,7 @@ public class NurseView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nurse_view);
 
+        getSupportActionBar().setTitle("Hello Nurse");
     }
 
     public void addPatientClick(View v){
