@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void nurseClick(View v){
-        Intent i = new Intent(MainActivity.this, NurseWelcomeView.class);
+        Intent i = new Intent(MainActivity.this, NurseView.class);
         startActivity(i);
     }
 }

@@ -17,14 +17,8 @@
         </activity>
         <activity android:name=".DatabaseManager" />
         <activity android:name=".DbViewer" />
-        <activity
-            android:name=".AddPatient"
-            android:label="@string/title_activity_patient_list"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".NurseWelcomeView"
-            android:label="@string/title_activity_nurse_welcome_view"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".AddPatient" />
+        <activity android:name=".NurseView" />
     </application>
 
 </manifest>
