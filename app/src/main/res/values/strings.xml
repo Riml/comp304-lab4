@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Lab4</string>
     <string name="txtChooseDB">Choose Database to work with:</string>
+
+    //Labels
+    <string name="title_activity_nurse_welcome_view">Hello Nurse</string>
+    <string name="title_activity_patient_list">New Patient</string>
+
+    //Nurse welcome view
+    <string name="txtNurseChoose">What would you like to do?</string>
+    <string name="txtCreateNewPatient">Add Patient</string>
+    <string name="txtViewPatients">View Patients</string>
 </resources>

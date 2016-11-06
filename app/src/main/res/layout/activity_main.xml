@@ -22,7 +22,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="43dp"
         android:id="@+id/btnPatientsDb"
-        android:layout_below="@+id/textView"
         android:layout_alignParentStart="true" />
 
     <Button
@@ -35,6 +34,7 @@
 
     <Button
         android:text="Nurses"
+        android:onClick="nurseClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnNursesDb"

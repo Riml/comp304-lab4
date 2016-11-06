@@ -1,8 +1,10 @@
 package com.comp304.group1.lab4;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,5 +32,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getSupportActionBar().setTitle("Hospital Database (Group1)");
+    }
+
+    public void nurseClick(View v){
+        Intent i = new Intent(MainActivity.this, NurseWelcomeView.class);
+        startActivity(i);
     }
 }
