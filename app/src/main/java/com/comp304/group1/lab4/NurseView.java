@@ -30,16 +30,22 @@ public class NurseView extends AppCompatActivity {
 
         // Reading all records
         List table = db.getTable("tbl_patient");
-
+        int n=0;
         for (Object o : table) {
             ArrayList row = (ArrayList)o;
             // Writing table to log
             String output="";
             for (int i=0;i<row.size();i++)
             {
+                n++;
                 output+= row.get(i).toString() + " ";
-                output+="\n";
+                if(n==6){
+                    n=0;
+                    output+="\n";
+                }
+
             }
+
             patientList.setText(output);
 
         }

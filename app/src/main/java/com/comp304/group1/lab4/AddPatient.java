@@ -18,6 +18,7 @@ import java.util.List;
 public class AddPatient extends AppCompatActivity {
 
     EditText pFname, pLname;
+    int doctoroId;
     Spinner departmentSpinner, doctorSpinner, roomSpinner;
     ArrayAdapter deparmentAdapter, doctorAdapter, roomAdapter;
     List<String> doctortArray = new ArrayList<String>();
@@ -37,36 +38,43 @@ public class AddPatient extends AppCompatActivity {
     public void initUI(){
         db = new DatabaseManager(this);
 
-        EditText pFname = (EditText) findViewById(R.id.txtFirstName);
-        EditText pLName = (EditText) findViewById(R.id.txtLastName);
+        pFname = (EditText) findViewById(R.id.txtFirstName);
+        pLname = (EditText) findViewById(R.id.txtLastName);
         departmentSpinner = (Spinner) findViewById(R.id.spnrDprt);
         doctorSpinner = (Spinner) findViewById(R.id.spnrDocId);
         roomSpinner = (Spinner) findViewById(R.id.spnrRoom);
 
-        departmentArray.add("Human Experiments");
-        departmentArray.add("Morgue");
+        roomArray.add("1A");
+        roomArray.add("2A");
+        roomArray.add("1B");
 
         // Reading all records
-        List table = db.getTable("tbl_patient");
-
+        List table = db.getTable("tbl_doctor");
+        int i =0;
         for (Object o : table) {
+
             ArrayList row = (ArrayList)o;
 
-            String output="";
-            for (int i=0;i<row.size();i++)
-            {
-                output+= row.get(i).toString();
-            }
-            //departmentArray = row;
+            //for (int i=0;i<row.size();i++)
+                //{
+                    Log.i("INSIDE DOC", row.get(1+i*4) + " ");
+                    doctortArray.add(row.get(1+i*4) + " " + row.get(2+i*4));
+                    doctoroId = Integer.parseInt(row.get(0).toString());
+                    departmentArray.add(row.get(3+i*4) + " ");
+                //}
+            i++;
         }
 
-        // Create Array adapter for restaurant spinner to bind array data
+        // Create Array adapter for  spinner to bind array data
         deparmentAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, departmentArray);
-        doctorAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, departmentArray);
-        roomAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, departmentArray);
+        doctorAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, doctortArray);
+        roomAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, roomArray);
 
         // Attach the array adapter to the spinner
         departmentSpinner.setAdapter(deparmentAdapter);
+        doctorSpinner.setAdapter(doctorAdapter);
+        roomSpinner.setAdapter(roomAdapter);
+
     }
 
     public void addPatient(View v) {
@@ -77,14 +85,15 @@ public class AddPatient extends AppCompatActivity {
         record[1]= pFname.getText().toString();
         record[2]= pLname.getText().toString();
         record[3]= departmentSpinner.getSelectedItem().toString();
-        record[4]=doctorSpinner.getSelectedItem().toString();
+        record[4]=Integer.toString(doctoroId);
         record[5]= roomSpinner.getSelectedItem().toString();
+        //record[5]= roomSpinner.getSelectedItem().toString();
 
         //populate the row with some values
         ContentValues values = new ContentValues();
 
         //add the row to the database
-        db.addRecord(values, "tbl_student", fields,record);
+        db.addRecord(values, "tbl_patient", fields,record);
 
     }
 }

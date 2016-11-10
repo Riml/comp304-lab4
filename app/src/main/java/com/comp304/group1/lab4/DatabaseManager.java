@@ -54,6 +54,21 @@ public class DatabaseManager extends SQLiteOpenHelper {
     //Functions for modifying table
     //***********************************************
 
+    void prePopulateDB(){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //prepopulate doctor table
+        db.execSQL("INSERT INTO tbl_doctor VALUES (1 , \"Ilmir\", \"Taychinov\", \"Human Testing\")");
+        db.execSQL("INSERT INTO tbl_doctor VALUES (2 , \"Ilmir\", \"Baychinov\", \"Morgue\")");
+        db.execSQL("INSERT INTO tbl_doctor VALUES (3 , \"Ilmir\", \"Caychinov\", \"Chaplancy\")");
+
+        //prepopulate nurse table
+        db.execSQL("INSERT INTO tbl_nurse VALUES (1 , \"Josh\", \"Bender\", \"Morgue\")");
+        db.execSQL("INSERT INTO tbl_nurse VALUES (2 , \"Mosh\", \"Lender\", \"Chaplancy\")");
+
+    }
+
+
     // Add a new record
     void addRecord(ContentValues values, String tableName, String fields[], String record[]) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -113,6 +128,14 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 new String[] { id });
         db.close();
     }
+
+    public void truncateTable(String tablename){
+        SQLiteDatabase innerDB = this.getWritableDatabase();
+        innerDB.execSQL("DELETE FROM " +tablename);
+
+    }
+
+
 
 }
 

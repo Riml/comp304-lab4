@@ -12,9 +12,10 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_marginLeft="90dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true">
 
         <TextView
             android:text="@string/txtNurseChoose"
@@ -22,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="65dp"
+            android:layout_marginTop="15dp"
             android:id="@+id/welcomeLabel" />
 
         <Button
@@ -45,14 +46,13 @@
             android:layout_centerHorizontal="true"
             android:layout_width="match_parent" />
 
-    </LinearLayout>
+        <TextView
+            android:text=""
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/patientList" />
 
-    <TextView
-        android:text=""
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/patientList" />
+    </LinearLayout>
 
 </RelativeLayout>
