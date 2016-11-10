@@ -23,34 +23,51 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public DatabaseManager(Context context) {
         super(context,DATABASE_NAME, null, DATABASE_VERSION);
     }
-    //-----TABLE MANAGEMENT------
-    //initialize database table names and creation strings
-    public void initializeDatabase(String[] tables, String tableCreatorString[])
+
+    //initialize database table names and DDL statements
+    public void dbInitialize(String[] tables, String tableCreatorString[])
     {
         this.tables=tables;
         this.tableCreatorString=tableCreatorString;
     }
 
-    //create the database
-    public void createDatabase(Context context)
-    {
-        SQLiteDatabase mDatabase;
-        mDatabase = context.openOrCreateDatabase(
-                DATABASE_NAME,
-                SQLiteDatabase.CREATE_IF_NECESSARY,
-                null);
-
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        // Drop existing tables
+        for (int i=0;i<tables.length;i++)
+            db.execSQL("DROP TABLE IF EXISTS " + tables[i]);
+        for (int i=0;i<tables.length;i++)
+            db.execSQL(tableCreatorString[i]);
     }
 
-    //delete the database
-    public void deleteDatabase(Context context)
-    {
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // Drop existing tables
+        for (int i=0;i<tables.length;i++)
+            db.execSQL("DROP TABLE IF EXISTS " + tables[i]);
 
-        context.deleteDatabase(DATABASE_NAME);
+        // Create tables again
+        onCreate(db);
     }
 
-    // Read all records from table, return List of Lists
-    public List readTable(String tableName) {
+    //***********************************************
+    //Functions for modifying table
+    //***********************************************
+
+    // Add a new record
+    void addRecord(ContentValues values, String tableName, String fields[], String record[]) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        for (int i=1;i<record.length;i++)
+            values.put(fields[i], record[i]);
+        // Insert the row
+        db.insert(tableName, null, values);
+        db.close(); //close database connection
+    }
+
+
+    // Read all records
+    public List getTable(String tableName) {
         List table = new ArrayList(); //to store all rows
         // Select all records
         String selectQuery = "SELECT  * FROM " + tableName;
@@ -58,6 +75,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         ArrayList row=new ArrayList(); //to store one row
+
         //scroll over rows and store each row in an array list object
         if (cursor.moveToFirst())
         {
@@ -76,41 +94,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
         return table;
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        // Drop existing tables
-        for (int i=0;i<tables.length;i++)
-            db.execSQL("DROP TABLE IF EXISTS " + tables[i]);
-        for (int i=0;i<tables.length;i++)
-            db.execSQL(tableCreatorString[i]);
-
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Drop existing tables
-        for (int i=0;i<tables.length;i++)
-            db.execSQL("DROP TABLE IF EXISTS " + tables[i]);
-
-        // Create tables again
-        onCreate(db);
-
-    }
-
-    //-----RECORD MANAGEMENT------------------------------
-    //Add Record
-    void addRecord(ContentValues values, String tableName, String fields[],String record[]) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        for (int i=1;i<record.length;i++)
-            values.put(fields[i], record[i]);
-        // Insert the row
-        db.insert(tableName, null, values);
-        db.close(); //close database connection
-    }
-
     // Update a record
-    public int updateRecord(ContentValues values, String tableName, String fields[], String record[]) {
+    public int updateRecord(ContentValues values, String tableName, String fields[],String record[]) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         for (int i=1;i<record.length;i++)
@@ -128,7 +113,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 new String[] { id });
         db.close();
     }
-    //----------------------------------------------------
 
 }
 

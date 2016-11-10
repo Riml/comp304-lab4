@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,37 +31,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         getSupportActionBar().setTitle("Hospital Database (Group1)");
-
-        final DatabaseManager db = new DatabaseManager(this);
-        //db.createDatabase(getApplicationContext());
-        db.initializeDatabase( tables,tableCreatorString);
     }
 
-    public void onClickTableName(View v){
-        Log.i("BUTTON", v.getId()+" ");
-
-        String tableNameToPass="";
-        switch (v.getId()){
-            case 2131492947:
-                tableNameToPass="tbl_patient";
-                break;
-            case 2131492949:
-                tableNameToPass="tbl_doctor";
-                break;
-            case 2131492950:
-                tableNameToPass="tbl_test";
-                break;
-            case 2131492951:
-                tableNameToPass="tbl_nurse";
-                break;
-        }
-
-        Intent nextIntent = new Intent(MainActivity.this, DbViewer.class);
-        nextIntent.putExtra("table_name", tableNameToPass);
-        startActivity(nextIntent);
-
-
+    public void nurseClick(View v){
+        Intent i = new Intent(MainActivity.this, NurseView.class);
+        startActivity(i);
     }
 }

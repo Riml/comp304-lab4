@@ -22,8 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="43dp"
         android:id="@+id/btnPatientsDb"
-        android:layout_alignParentStart="true"
-        android:onClick="onClickTableName" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:text="Doctors"
@@ -31,8 +30,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnDoctorsDb"
         android:layout_above="@+id/btnTestsDb"
-        android:layout_centerHorizontal="true"
-        android:onClick="onClickTableName" />
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Nurses"
+        android:onClick="nurseClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnNursesDb"
+        android:layout_alignBaseline="@+id/btnTestsDb"
+        android:layout_alignBottom="@+id/btnTestsDb"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:text="Tests"
@@ -41,16 +49,5 @@
         android:id="@+id/btnTestsDb"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/btnPatientsDb"
-        android:layout_alignEnd="@+id/btnPatientsDb"
-        android:onClick="onClickTableName" />
-
-    <Button
-        android:text="Nurses"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnNursesDb"
-        android:layout_alignBaseline="@+id/btnTestsDb"
-        android:layout_alignBottom="@+id/btnTestsDb"
-        android:layout_alignStart="@+id/btnDoctorsDb"
-        android:onClick="onClickTableName" />
+        android:layout_alignEnd="@+id/btnPatientsDb" />
 </RelativeLayout>

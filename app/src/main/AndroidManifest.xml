@@ -16,7 +16,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".DatabaseManager" />
-        <activity android:name=".DbViewer"></activity>
+        <activity android:name=".DbViewer" />
+        <activity android:name=".AddPatient" />
+        <activity android:name=".NurseView" />
     </application>
 
 </manifest>
