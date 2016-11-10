@@ -20,6 +20,8 @@ public class AddPatient extends AppCompatActivity {
     EditText pFname, pLname;
     Spinner departmentSpinner, doctorSpinner, roomSpinner;
     ArrayAdapter deparmentAdapter, doctorAdapter, roomAdapter;
+    List<String> doctortArray = new ArrayList<String>();
+    List<String> roomArray = new ArrayList<String>();
     List<String> departmentArray = new ArrayList<String>();
 
     DatabaseManager db;
@@ -41,6 +43,9 @@ public class AddPatient extends AppCompatActivity {
         doctorSpinner = (Spinner) findViewById(R.id.spnrDocId);
         roomSpinner = (Spinner) findViewById(R.id.spnrRoom);
 
+        departmentArray.add("Human Experiments");
+        departmentArray.add("Morgue");
+
         // Reading all records
         List table = db.getTable("tbl_patient");
 
@@ -52,12 +57,13 @@ public class AddPatient extends AppCompatActivity {
             {
                 output+= row.get(i).toString();
             }
-            departmentArray = row;
+            //departmentArray = row;
         }
 
         // Create Array adapter for restaurant spinner to bind array data
-        deparmentAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, departmentArray);
+        deparmentAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, departmentArray);
+        doctorAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, departmentArray);
+        roomAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, departmentArray);
 
         // Attach the array adapter to the spinner
         departmentSpinner.setAdapter(deparmentAdapter);
