@@ -20,8 +20,8 @@ public class AddTest extends AppCompatActivity {
     TextView totalTestsView;
 
     int lastTestID;
-    final String fields[] = {"test_id","BPL","BPL","temperature","patient_id"};
-    final String record[] = new String[5];
+    final String fields[] = {"test_id","BPL","BPH","HPM","temperature","patient_id"};
+    final String record[] = new String[6];
     private final DatabaseManager db= new DatabaseManager(this);
 
     Spinner patientSpinner;
@@ -67,30 +67,8 @@ public class AddTest extends AppCompatActivity {
         patientSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                selectedPatientID = patientIDs.get(patientSpinner.getSelectedItemPosition());
-
-                List table = db.getTable("tbl_test");
-
-                int i2=0;
-                int i3=0;
-                String output="";
-                for (Object o : table) {
-                    ArrayList row = (ArrayList)o;
-                    // Writing table to log
-
-
-                    Log.i("COMPARE",row.get(4+i2*5).toString() +" : "+selectedPatientID);
-                    if(Integer.parseInt(row.get(4+i2*5).toString()) == Integer.parseInt(selectedPatientID)){
-                        i3++;
-                        output+= "BPL:" +row.get(1+i2*5)+" BPH:"+row.get(2+i2*5)+" Temperature:"+row.get(3+i2*5)+"\n";
-
-                    }
-                    i2++;
-
-                }
-                testsDataView.setText(output);
-                totalTestsView.setText("Current patient survived after "+i3+" tests");
-            }
+                updateView();
+        }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
@@ -111,12 +89,42 @@ public class AddTest extends AppCompatActivity {
         }
         record[1]= ((TextView)findViewById(R.id.inputBPL)).getText().toString();
         record[2]=((TextView)findViewById(R.id.inputBPH)).getText().toString();
-        record[3]=((TextView)findViewById(R.id.inputTemp)).getText().toString();
-        record[4]=selectedPatientID;
+        record[3]=((TextView)findViewById(R.id.inputHPM)).getText().toString();
+        record[4]=((TextView)findViewById(R.id.inputTemp)).getText().toString();
+        record[5]=selectedPatientID;
 
         ContentValues values = new ContentValues();
 
         db.addRecord(values, "tbl_test", fields,record);
+        Toast.makeText(getApplicationContext(),"Test was successfully added",Toast.LENGTH_SHORT).show();
+        Log.i("VIEWPRE","UPDATED");
+        updateView();
+
+    }
+
+    public void updateView(){
+
+        selectedPatientID = patientIDs.get(patientSpinner.getSelectedItemPosition());
+
+        Log.i("VIEW","UPDATED");
+        List table = db.getTable("tbl_test");
+
+        int i2=0;
+        int i3=0;
+        String output="";
+        for (Object o : table) {
+            ArrayList row = (ArrayList)o;
+            Log.i("COMPARE",row.get(5+i2*6).toString() +" : "+selectedPatientID);
+            if(Integer.parseInt(row.get(5+i2*6).toString()) == Integer.parseInt(selectedPatientID)){
+                i3++;
+                output+= "BPL:" +row.get(1+i2*6)+" BPH:"+row.get(2+i2*6)+" HPM:"+row.get(3+i2*6)+" Temperature:"+row.get(4+i2*6)+"\n";
+
+            }
+            i2++;
+
+        }
+        testsDataView.setText(output);
+        totalTestsView.setText("Current patient survived after "+i3+" tests");
 
     }
 }

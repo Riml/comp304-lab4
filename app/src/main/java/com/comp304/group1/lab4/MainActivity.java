@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
                     " FOREIGN KEY(doctor_id) REFERENCES tbl_doctor(doctor_id));",
 
             "CREATE TABLE tbl_test (test_id INTEGER PRIMARY KEY AUTOINCREMENT , " +
-                    "BPL REAL, BPH  REAL, temperature REAL, patient_id INTEGER NOT NULL," +
+                    "BPL REAL, BPH  REAL, HPM REAL, temperature REAL, patient_id INTEGER NOT NULL," +
                     "FOREIGN KEY(patient_id) REFERENCES tbl_patient(patient_id));",
 
             "CREATE TABLE tbl_nurse (nurse_id INTEGER PRIMARY KEY AUTOINCREMENT , firstname TEXT, lastname TEXT, department TEXT);"

@@ -65,10 +65,9 @@
             android:textColor="@android:color/background_dark" />
 
         <EditText
-            android:layout_width="57dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="111"
             android:ems="10"
             android:id="@+id/inputBPL"
             android:textColor="?attr/colorControlNormal" />
@@ -82,16 +81,33 @@
             android:textSize="18sp" />
 
         <EditText
-            android:layout_width="96dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Name"
             android:ems="10"
             android:id="@+id/inputBPH"
             android:textColor="?attr/colorControlNormal" />
 
         <TextView
-            android:text="Temperature"
+            android:text="HPM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:layout_weight="1"
+            android:textColor="@android:color/background_dark"
+            android:textSize="18sp" />
+
+        <EditText
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/inputHPM"
+            android:layout_weight="1"
+            android:textColor="?attr/colorControlNormal" />
+
+        <TextView
+            android:text="T(°C)"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView8"
@@ -99,13 +115,12 @@
             android:textSize="18sp" />
 
         <EditText
-            android:layout_width="97dp"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Name"
             android:ems="10"
             android:id="@+id/inputTemp"
-            android:textColor="?attr/colorControlNormal" />
+            android:textColor="?attr/colorControlNormal"
+            android:layout_width="50dp" />
 
     </LinearLayout>
 

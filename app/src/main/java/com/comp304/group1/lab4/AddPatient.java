@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -93,6 +94,7 @@ public class AddPatient extends AppCompatActivity {
 
         //add the row to the database
         db.addRecord(values, "tbl_patient", fields,record);
+        Toast.makeText(getApplicationContext(),"Patient was successfully added",Toast.LENGTH_SHORT).show();
 
     }
 }
