@@ -59,8 +59,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
         //prepopulate doctor table
         db.execSQL("INSERT INTO tbl_doctor VALUES (1 , \"Ilmir\", \"Taychinov\", \"Human Testing\")");
-        db.execSQL("INSERT INTO tbl_doctor VALUES (2 , \"Ilmir\", \"Baychinov\", \"Morgue\")");
-        db.execSQL("INSERT INTO tbl_doctor VALUES (3 , \"Ilmir\", \"Caychinov\", \"Chaplancy\")");
+        db.execSQL("INSERT INTO tbl_doctor VALUES (2 , \"Elmir\", \"Baychinov\", \"Morgue\")");
+        db.execSQL("INSERT INTO tbl_doctor VALUES (3 , \"Ylmir\", \"Caychinov\", \"Chaplancy\")");
 
         //prepopulate nurse table
         db.execSQL("INSERT INTO tbl_nurse VALUES (1 , \"Josh\", \"Bender\", \"Morgue\")");

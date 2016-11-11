@@ -36,6 +36,7 @@ public class AddTest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_test);
+        getSupportActionBar().setTitle("Test Information View");
 
 
         testsDataView=(TextView)findViewById(R.id.txtTestData);

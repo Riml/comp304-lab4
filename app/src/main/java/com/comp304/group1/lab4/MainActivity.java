@@ -1,15 +1,15 @@
 package com.comp304.group1.lab4;
 
-import android.content.ContentValues;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
     };
     private DatabaseManager db;
+    private EditText passField;
+    private EditText idField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,56 +43,57 @@ public class MainActivity extends AppCompatActivity {
         db = new DatabaseManager(this);
         //db.createDatabase(getApplicationContext());
         db.dbInitialize( tables,tableCreatorString);
+        passField=(EditText) findViewById(R.id.txtLoginPass) ;
+        idField=(EditText) findViewById(R.id.txtLoginID) ;
 
-        getSupportActionBar().setTitle("Hospital Database (Group1)");
+
+        getSupportActionBar().setTitle("Hospital Super Database (Group1)");
 
 
 
     }
 
     public void nurseClick(View v){
+
+        if( idField.getText().toString() =="" ||
+                !(passField.getText().toString()).equals("123qwe")  ){
+            Toast.makeText(getApplicationContext(),"Please check your credentials",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
         Intent i = new Intent(MainActivity.this, NurseView.class);
+        startActivity(i);
+
+    }
+
+    public void doctorClick(View v){
+
+        if( idField.getText().toString() =="" ||
+                !(passField.getText().toString()).equals("12qwas")  ){
+            Toast.makeText(getApplicationContext(),"Please check your credentials",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        Intent i = new Intent(MainActivity.this, AddTest.class);
         startActivity(i);
 
     }
 
     public void onClickReset(View v){
 
+        //empty all tables
         db.truncateTable("tbl_doctor");
         db.truncateTable("tbl_nurse");
+        db.truncateTable("tbl_test");
+        db.truncateTable("tbl_patient");
+        //prepopulate Nurse and Doctor table
         db.prePopulateDB();
 
 
 
     }
 
-    private void prepopulateTable(){
-        //pre-populate table
-        SharedPreferences myPrefs = getSharedPreferences("myPrefs", MODE_PRIVATE);
-        int i = myPrefs.getInt("dbReady", 0); // return 0 if dbReady doesn't exist
-        if(i==0){
-            Log.i("PREP","Done");
 
-            ContentValues values = new ContentValues();
-            String doctorFields[] = {"nurse_id","firstname","lastname","department"};
-            String nurseFields[] = {"doctor_id","firstname","lastname","department"};
-            String doctorRecord1[]={null,"Jacky2","Zhang","Human Experiments"};
-            String nurseRecord1[]={null,"Ilmir","Taychinov","Morgue"};
-            db.addRecord(values, "tbl_doctor", doctorFields,nurseRecord1);
-            ContentValues values2 = new ContentValues();
-            db.addRecord(values2, "tbl_doctor", doctorFields,doctorRecord1);
-
-
-            String doctorRecord2[]={null,"Josh2","Bender","Human Experiments"};
-            String nurseRecord2[]={null,"Konika","Gupta","Human Experiments"};
-            db.addRecord(values, "tbl_nurse", nurseFields,nurseRecord2);
-            db.addRecord(values, "tbl_doctor", doctorFields,doctorRecord2);
-
-
-            SharedPreferences.Editor e = myPrefs.edit();
-            e.putInt("dbReady", 1); // add or overwrite dbReady
-            e.commit(); // this saves to disk and notifies observers
-        }
-
-    }
 }

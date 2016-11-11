@@ -25,12 +25,16 @@ public class AddPatient extends AppCompatActivity {
     List<String> roomArray = new ArrayList<String>();
     List<String> departmentArray = new ArrayList<String>();
 
+    String selectedDoctorID;
+    List<String> doctorsIDs = new ArrayList<String>();
+
     DatabaseManager db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_patient);
+        getSupportActionBar().setTitle("Patient Information View");
 
         initUI();
     }
@@ -54,14 +58,9 @@ public class AddPatient extends AppCompatActivity {
         for (Object o : table) {
 
             ArrayList row = (ArrayList)o;
-
-            //for (int i=0;i<row.size();i++)
-                //{
-                    Log.i("INSIDE DOC", row.get(1+i*4) + " ");
-                    doctortArray.add(row.get(1+i*4) + " " + row.get(2+i*4));
-                    doctoroId = Integer.parseInt(row.get(0).toString());
-                    departmentArray.add(row.get(3+i*4) + " ");
-                //}
+            doctortArray.add(row.get(1+i*4) + " " + row.get(2+i*4));
+            doctorsIDs.add(row.get(0+i*4).toString());
+            departmentArray.add(row.get(3+i*4) + " ");
             i++;
         }
 
@@ -85,7 +84,7 @@ public class AddPatient extends AppCompatActivity {
         record[1]= pFname.getText().toString();
         record[2]= pLname.getText().toString();
         record[3]= departmentSpinner.getSelectedItem().toString();
-        record[4]=Integer.toString(doctoroId);
+        record[4]=doctorsIDs.get(doctorSpinner.getSelectedItemPosition());
         record[5]= roomSpinner.getSelectedItem().toString();
         //record[5]= roomSpinner.getSelectedItem().toString();
 
