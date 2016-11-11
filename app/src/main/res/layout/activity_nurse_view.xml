@@ -14,8 +14,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:text="@string/txtNurseChoose"
@@ -33,14 +33,21 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/welcomeLabel"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="15dp"
             android:id="@+id/button" />
+
+        <Button
+            android:text="Add Test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnAddTest"
+            android:onClick="addTestClick" />
 
         <Button
             android:text="@string/txtViewPatients"
             android:onClick="showPatients"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+
             android:id="@+id/button2"
             android:layout_below="@+id/button"
             android:layout_centerHorizontal="true"

@@ -24,7 +24,7 @@
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner" />
+        android:id="@+id/spnPatient" />
 
     <TextView
         android:text="Current patient survived after:"
@@ -114,7 +114,8 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:id="@+id/btnNewTest"
-        android:layout_weight="0.01" />
+        android:layout_weight="0.01"
+        android:onClick="onClickAddTest" />
 
     <TextView
         android:text="Previous Tests:"

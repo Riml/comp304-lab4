@@ -24,6 +24,11 @@ public class NurseView extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void addTestClick(View v){
+        Intent i = new Intent(NurseView.this, AddTest.class);
+        startActivity(i);
+    }
+
     public void showPatients(View v) {
         final DatabaseManager db = new DatabaseManager(this);
         final TextView patientList = (TextView) findViewById(R.id.patientList);
