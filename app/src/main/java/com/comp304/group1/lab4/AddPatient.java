@@ -48,20 +48,19 @@ public class AddPatient extends AppCompatActivity {
         departmentSpinner = (Spinner) findViewById(R.id.spnrDprt);
         doctorSpinner = (Spinner) findViewById(R.id.spnrDocId);
         roomSpinner = (Spinner) findViewById(R.id.spnrRoom);
-
+// Add three rooms 1A, 2A , 1B
         roomArray.add("1A");
         roomArray.add("2A");
         roomArray.add("1B");
 
-        // Reading all records
+        // Reading all records from tbl_dotor
         List table = db.getTable("tbl_doctor");
         int i =0;
         for (Object o : table) {
-
             ArrayList row = (ArrayList)o;
-            doctortArray.add(row.get(1+i*4) + " " + row.get(2+i*4));
-            doctorsIDs.add(row.get(0+i*4).toString());
-            departmentArray.add(row.get(3+i*4) + " ");
+            doctortArray.add(row.get(1+i*4) + " " + row.get(2+i*4));      //get firsname and lastname
+            doctorsIDs.add(row.get(0+i*4).toString());                  // get doctor's ID
+            departmentArray.add(row.get(3+i*4) + " ");                  //get department
             i++;
         }
 
