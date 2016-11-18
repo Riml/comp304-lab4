@@ -40,6 +40,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
             db.execSQL(tableCreatorString[i]);
     }
 
+    //onUpgrade will be called if a table already exist for an older version 
+    
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop existing tables
@@ -128,7 +130,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
                 new String[] { id });
         db.close();
     }
-
+    // trucate a table with given name
     public void truncateTable(String tablename){
         SQLiteDatabase innerDB = this.getWritableDatabase();
         innerDB.execSQL("DELETE FROM " +tablename);
