@@ -20,12 +20,12 @@ public class NurseView extends AppCompatActivity {
     }
 
     public void addPatientClick(View v){
-        Intent i = new Intent(NurseView.this, AddPatient.class);
+        Intent i = new Intent(NurseView.this, AddPatient.class);         //go to AddPatient activity
         startActivity(i);
     }
 
     public void addTestClick(View v){
-        Intent i = new Intent(NurseView.this, AddTest.class);
+        Intent i = new Intent(NurseView.this, AddTest.class);        //go to Addtest activity
         startActivity(i);
     }
 
@@ -36,17 +36,17 @@ public class NurseView extends AppCompatActivity {
         // Reading all records
         List table = db.getTable("tbl_patient");
         int n=0;
-        for (Object o : table) {
+        for (Object o : table) {            // Iterate through all the rows of table
             ArrayList row = (ArrayList)o;
             // Writing table to log
             String output="";
-            for (int i=0;i<row.size();i++)
+            for (int i=0;i<row.size();i++)      // Iterate through all the column of a row.
             {
                 n++;
-                output+= row.get(i).toString() + " ";
+                output+= row.get(i).toString() + " ";       //  adding the details of patient one by one. 
                 if(n==6){
                     n=0;
-                    output+="\n";
+                    output+="\n";               //add a nextline char after getting patient details.
                 }
 
             }
