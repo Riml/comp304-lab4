@@ -42,16 +42,16 @@ public class AddTest extends AppCompatActivity {
         testsDataView=(TextView)findViewById(R.id.txtTestData);
         totalTestsView=(TextView)findViewById(R.id.txtTotalTests);
 
-
+        //get data from table  tbl_patient
         List tableP = db.getTable("tbl_patient");
         int i1 =0;
-        for (Object o : tableP) {
+        for (Object o : tableP) {   // iterate row by row
 
             ArrayList row = (ArrayList)o;
 
 
-            patientArray.add(row.get(1+i1*6) + " " + row.get(2+i1*6));
-            patientIDs.add(row.get(0+i1*6).toString());
+            patientArray.add(row.get(1+i1*6) + " " + row.get(2+i1*6));      //get firstname and lastname
+            patientIDs.add(row.get(0+i1*6).toString());                      //get ids
 
 
             i1++;
@@ -102,9 +102,10 @@ public class AddTest extends AppCompatActivity {
 
     }
 
+    // update test table for selected patient 
     public void updateView(){
 
-        selectedPatientID = patientIDs.get(patientSpinner.getSelectedItemPosition());
+        selectedPatientID = patientIDs.get(patientSpinner.getSelectedItemPosition());       //get selected patient id
 
         Log.i("VIEW","UPDATED");
         List table = db.getTable("tbl_test");
